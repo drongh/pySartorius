@@ -31,7 +31,7 @@ class Sartorius(serial.Serial):
         """
         try:
             if self.inWaiting() == 0:
-                self.write('\033P\n')
+                self.write(b'\033P\n')
             answer = self.readline()
             if len(answer) == 16: # menu code 7.1.1
                 answer = float(answer[0:11].replace(' ', ''))
@@ -45,7 +45,7 @@ class Sartorius(serial.Serial):
         """
         Return unit.
         """
-        self.write('\033P\n')
+        self.write(b'\033P\n')
         answer = self.readline()
         try:
             answer = answer[11].strip()
@@ -57,16 +57,16 @@ class Sartorius(serial.Serial):
         """
         Tara and zeroing combined.
         """
-        self.write('\033T\n')
+        self.write(b'\033T\n')
 
     def tara(self):
         """
         Tara.
         """
-        self.write('\033U\n')
+        self.write(b'\033U\n')
 
     def zero(self):
         """
         Zero.
         """
-        self.write('\033V\n')
+        self.write(b'\033V\n')
